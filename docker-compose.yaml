@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  reservations:
+    build: 
+      context: .
+      dockerfile: ./apps/reservations/Dockerfile 
+      target: development 
+    command: pnpm run start:dev 
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app 
+  
+  auth:
+    build: 
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development 
+    command: pnpm run start:dev 
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/usr/src/app 
+  mongo:
+    image: mongo:4.2.16-bionic
+ 
+    
+
