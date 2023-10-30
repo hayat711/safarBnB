@@ -33,12 +33,22 @@ services:
       dockerfile: ./apps/payments/Dockerfile
       target: development 
     command: pnpm run start:dev payments 
-    ports:
-      - '3003:3003'
+    
     volumes:
       - .:/usr/src/app 
     env_file:
       - ./apps/payments/.env
+  
+  notifications:
+    build: 
+      context: .
+      dockerfile: ./apps/notifications/Dockerfile
+      target: development 
+    command: pnpm run start:dev notifications 
+    volumes:
+      - .:/usr/src/app 
+    env_file:
+      - ./apps/notifications/.env
 
 
   mongo:
